@@ -64,10 +64,12 @@ r404 :not_found
 r404 404
 ```
 
+**Note:** The status parameter defaults to `404`.
+
 You are able to pass exception details which will be available in your template:
 
 ```ruby
-r404 :not_found, 'Here is what wen wrong ...'
+r404 :not_found, 'Here is what went wrong ...'
 ```
 
 Alternatively you can raise errors from anywhere by raising the [error class](#list-of-all-error-classes) directly:
@@ -79,6 +81,16 @@ raise R404::NotFound
 ### Rendering an error
 
 r404 automatically looks up templates in the `app/views/r404` directory. The `status` and `exception` (if passed) variables are available in your template.
+
+Often you don't want to render a template, but instead your goal is to redirect back passing an alert. You are able to override error specific methods in your `ApplicationController`:
+
+```ruby
+private
+
+def render_r404_access_denied format, status, exception
+    format.html { redirect_back fallback_location: root_url, alert: 'You are unauthorized to perform this action' }
+end
+```
 
 ### List of all error classes
 
