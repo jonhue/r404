@@ -57,11 +57,17 @@ Finally add `include R404Controller` to your `ApplicationController` located in 
 
 You can raise errors in controllers and views:
 
-```
+```ruby
 r404 :not_found
 
 # more specific
 r404 404
+```
+
+Alternatively you can raise errors from anywhere by raising the [error class](#list-of-all-error-classes) directly:
+
+```ruby
+raise R404::NotFound
 ```
 
 ### Rendering an error
