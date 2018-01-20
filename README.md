@@ -64,6 +64,12 @@ r404 :not_found
 r404 404
 ```
 
+You are able to pass exception details which will be available in your template:
+
+```ruby
+r404 :not_found, 'Here is what wen wrong ...'
+```
+
 Alternatively you can raise errors from anywhere by raising the [error class](#list-of-all-error-classes) directly:
 
 ```ruby
@@ -72,7 +78,7 @@ raise R404::NotFound
 
 ### Rendering an error
 
-r404 automatically looks up templates in the `app/views/r404` directory.
+r404 automatically looks up templates in the `app/views/r404` directory. The `status` and `exception` (if passed) variables are available in your template.
 
 ### List of all error classes
 
