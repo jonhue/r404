@@ -12,6 +12,7 @@ An error handler & renderer for Rails.
 * [Usage](#usage)
     * [Raising an error](#raising-an-error)
     * [Rendering an error](#rendering-an-error)
+        * [Rendering external errors](#rendering-external-errors)
     * [List of all error classes](#list-of-all-error-classes)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -89,6 +90,19 @@ private
 
 def render_r404_access_denied format, status, exception
     format.html { redirect_back fallback_location: root_url, alert: 'You are unauthorized to perform this action' }
+end
+```
+
+#### Rendering external errors
+
+A lot of errors can be thrown in a Rails application. You can rescue and render them from your `ApplicationController`, here is a very basic configuration:
+
+```ruby
+rescue_from CanCan::AccessDenied do |exception|
+    render_r404 :access_denied, 403, exception
+end
+rescue_from ActiveRecord::RecordNotFound, AbstractController::ActionNotFound, ActionController::RoutingError do |exception|
+    render_r404 :not_found, 404, exception
 end
 ```
 

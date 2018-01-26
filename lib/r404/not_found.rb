@@ -1,7 +1,7 @@
 module R404
     class NotFound < StandardError
 
-        def initialize exception
+        def initialize exception = nil
             super
         end
 
