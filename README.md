@@ -13,6 +13,7 @@ An error handler & renderer for Rails.
     * [Raising an error](#raising-an-error)
     * [Rendering an error](#rendering-an-error)
         * [Rendering external errors](#rendering-external-errors)
+    * [Routing errors](#routing-errors)
     * [List of all error classes](#list-of-all-error-classes)
 * [To Do](#to-do)
 * [Contributing](#contributing)
