@@ -1,4 +1,4 @@
-module R404Controller
+module R404Renderer
 
     extend ActiveSupport::Concern
 

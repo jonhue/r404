@@ -48,7 +48,7 @@ Now run the generator:
 
     $ rails g r404
 
-Finally add `include R404Controller` to your `ApplicationController` located in `app/controllers/application_controller.rb`.
+Finally add `include R404Renderer` to your `ApplicationController` located in `app/controllers/application_controller.rb`.
 
 ---
 
@@ -105,6 +105,16 @@ rescue_from ActiveRecord::RecordNotFound, AbstractController::ActionNotFound, Ac
     render_r404 :not_found, 404, exception
 end
 ```
+
+### Routing errors
+
+Often you want to raise `R404::NotFound` errors for every undefined route. Using r404 controller actions, add the following to the very bottom of your routes:
+
+```ruby
+match '*path', to: 'r404#not_found', via: :all
+```
+
+**Note:** Similar actions are also available for every other r404 error class.
 
 ### List of all error classes
 
